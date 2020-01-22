@@ -1,8 +1,6 @@
-import static java.util.Arrays.asList;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class DayTwo {
@@ -39,7 +37,7 @@ public class DayTwo {
         final int opcode = instructions[offset];
         int total;
 
-        if(opcode == 99) {
+        if (opcode == 99) {
             return false;
         }
 
