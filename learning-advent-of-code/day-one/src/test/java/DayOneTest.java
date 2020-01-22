@@ -1,9 +1,9 @@
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 
-class DayOneFuelRequirementsTest {
+class DayOneTest {
 
     DayOneFuelRequirements dayOneFuelRequirements = new DayOneFuelRequirements();
 

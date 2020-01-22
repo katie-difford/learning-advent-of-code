@@ -1,3 +1,4 @@
 rootProject.name = 'learning-advent-of-code'
-include 'day-one'
+include ':day-one'
+include 'day-two'
 
