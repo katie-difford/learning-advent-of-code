@@ -24,7 +24,7 @@ public class DayTwoPartTwo {
 
                 System.out.println("----------------");
                 System.out.println("New Instruction Index 1: " + newInstructions[1]);
-                System.out.println("New Instruction Index 1: " + newInstructions[2]);
+                System.out.println("New Instruction Index 2: " + newInstructions[2]);
             }
         }
         return newInstructions;
