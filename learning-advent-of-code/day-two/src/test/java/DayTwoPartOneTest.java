@@ -6,14 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class DayTwoTest {
+class DayTwoPartOneTest {
 
-    private DayTwo underTest;
+    private DayTwoPartOne underTest;
 
     @BeforeEach
     void setUp() {
 
-        underTest = new DayTwo();
+        underTest = new DayTwoPartOne();
     }
 
     private static Stream<Data> data() {
