@@ -15,7 +15,7 @@ public class DayTwoPartOne {
         dayTwoPartOne.getTheNumberAtPositionOne(instructions);
     }
 
-    private void getTheNumberAtPositionOne(final int[] instructions) {
+    public void getTheNumberAtPositionOne(final int[] instructions) {
         DayTwo.opcodeCalculation(instructions);
         System.out.println("--------------");
         System.out.println("Instruction at Position 0: " + instructions[0]);

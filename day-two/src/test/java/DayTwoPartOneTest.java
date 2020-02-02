@@ -8,14 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class DayTwoPartOneTest {
 
-    private DayTwoPartOne underTest;
-
-    @BeforeEach
-    void setUp() {
-
-        underTest = new DayTwoPartOne();
-    }
-
     private static Stream<Data> data() {
 
         return Stream.of(
@@ -33,7 +25,7 @@ class DayTwoPartOneTest {
     @ParameterizedTest
     void correctOpCodeIsReturned(final Data data) {
 
-        assertThat(underTest.opcodeCalculation(data.opcode)).isEqualTo(data.newopcode);
+        assertThat(DayTwo.opcodeCalculation(data.opcode)).isEqualTo(data.newopcode);
     }
 
     private static class Data {

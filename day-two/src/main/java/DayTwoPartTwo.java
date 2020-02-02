@@ -1,5 +1,6 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class DayTwoPartTwo {
@@ -19,14 +20,21 @@ public class DayTwoPartTwo {
     }
 
     private void getTheNumbersInPositionOneAndTwoThatReturnTheDesiredValue(final int[] instructions) {
-        while(instructions[0] != 19690720) {
-            for (int i = 0; i <= 5; i++) {
-                for (int j = 0; j <= 5; j++) {
-                    setTheNewPositionsInInstructions(instructions, i, j);
-                    DayTwo.opcodeCalculation(instructions);
+
+        for (int i = 0; i <= 99; i++) {
+            for (int j = 0; j <= 99; j++) {
+
+                final int[] current = Arrays.copyOf(instructions, instructions.length);
+                setTheNewPositionsInInstructions(current, i, j);
+                DayTwo.opcodeCalculation(current);
+
+                if(current[0] == 19690720) {
+                    System.out.println(String.format("i: %d, j: %d", i, j));
+                    int answer = 100 * i + j;
+                    System.out.println("Answer is: " + answer);
+                    break;
                 }
             }
-
         }
     }
 
