@@ -64,12 +64,11 @@ public class DayThreePartOneTest {
         LinkedList list = new LinkedList();
         list.add(point);
 
-        String direction = "R";
         String distance = "75";
 
         Point newPoint = new Point(75, 10);
 
-        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingRight(list, direction, distance)).isEqualTo(newPoint);
+        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingRight(list, distance)).isEqualTo(newPoint);
     }
 
     @Test
@@ -78,12 +77,11 @@ public class DayThreePartOneTest {
         LinkedList list = new LinkedList();
         list.add(point);
 
-        String direction = "L";
         String distance = "10";
 
         Point newPoint = new Point(65, 10);
 
-        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingLeft(list, direction, distance)).isEqualTo(newPoint);
+        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingLeft(list, distance)).isEqualTo(newPoint);
     }
 
     @Test

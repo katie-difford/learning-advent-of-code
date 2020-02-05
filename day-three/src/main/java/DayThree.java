@@ -26,8 +26,14 @@ public class DayThree {
             String direction = splitIndividualInstructionIntoDirection(s);
             String distance = splitIndividualInstructionIntoDistance(s);
 
-            Point pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingRight(firstWire, direction, distance);
-            addsNewPointToList(firstWire, pointToAdd);
+            Point pointToAdd;
+            if (direction.equals("R")) {
+                pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingRight(firstWire, distance);
+                addsNewPointToList(firstWire, pointToAdd);
+            } else if (direction.equals("R")) {
+                pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingLeft(firstWire, distance);
+                addsNewPointToList(firstWire, pointToAdd);
+            }
 
 //
 //            int pointToGet = 0;
@@ -95,28 +101,20 @@ public class DayThree {
         return s.substring(1);
     }
 
-    public static Point workOutNewCoordinatesOfTheWireWhenGoingRight(LinkedList<Point> firstWire, String direction, String distance) {
-        if (direction.equals("R")) {
-            int currentX = (int)firstWire.get(0).getX();
-            int newX = currentX + Integer.parseInt(distance);
-            int newY = (int)firstWire.get(0).getY();
-            Point newPoint = new Point(newX, newY);
-            return newPoint;
-        } else {
-            return firstWire.get(0);
-        }
+    public static Point workOutNewCoordinatesOfTheWireWhenGoingRight(LinkedList<Point> firstWire, String distance) {
+        int currentX = (int) firstWire.get(0).getX();
+        int newX = currentX + Integer.parseInt(distance);
+        int newY = (int) firstWire.get(0).getY();
+        Point newPoint = new Point(newX, newY);
+        return newPoint;
     }
 
-    public static Point workOutNewCoordinatesOfTheWireWhenGoingLeft(LinkedList<Point> firstWire, String direction, String distance) {
-        if (direction.equals("L")) {
-            int currentX = (int)firstWire.get(0).getX();
-            int newX = currentX - Integer.parseInt(distance);
-            int newY = (int)firstWire.get(0).getY();
-            Point newPoint = new Point(newX, newY);
-            return newPoint;
-        } else {
-            return firstWire.get(0);
-        }
+    public static Point workOutNewCoordinatesOfTheWireWhenGoingLeft(LinkedList<Point> firstWire, String distance) {
+        int currentX = (int) firstWire.get(0).getX();
+        int newX = currentX - Integer.parseInt(distance);
+        int newY = (int) firstWire.get(0).getY();
+        Point newPoint = new Point(newX, newY);
+        return newPoint;
     }
 
     public static void addsNewPointToList(LinkedList<Point> firstWire, Point newPoint) {
