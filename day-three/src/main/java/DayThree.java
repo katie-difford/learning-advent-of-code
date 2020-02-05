@@ -15,14 +15,17 @@ public class DayThree {
     }
 
     public static boolean distanceCalculation(String directions) {
-        addPointZeroAsFirstLocationInTheList();
-        canSplitTheListIntoIndividualInstructions(directions);
+        LinkedList<Point> firstWire = new LinkedList<>();
+
+        addPointZeroAsFirstLocationInTheList(firstWire);
+        String[] split = canSplitTheListIntoIndividualInstructions(directions);
 
 //
 //
-//        for (String s : split) {
-//            String direction = s.substring(0, 1);
-//            String distanceToMove = s.substring(1);
+        for (String s : split) {
+            splitIndividualInstructionIntoDirection(s);
+            splitIndividualInstructionIntoDistance(s);
+
 //
 //            int pointToGet = 0;
 //            Point previousPoint = firstWire.get(pointToGet);
@@ -52,7 +55,7 @@ public class DayThree {
 //                pointToGet++;
 //            }
 
-//        }
+        }
 //
 //        System.out.println("First Wire: " + firstWire);
 
@@ -69,9 +72,8 @@ public class DayThree {
         }
     }
 
-    public static LinkedList<Point> addPointZeroAsFirstLocationInTheList() {
+    public static LinkedList<Point> addPointZeroAsFirstLocationInTheList(LinkedList<Point> firstWire) {
         Point firstLocation = new Point(0, 0);
-        LinkedList<Point> firstWire = new LinkedList<>();
         firstWire.add(firstLocation);
         System.out.println("First Wire: " + firstWire);
         return firstWire;
@@ -80,6 +82,14 @@ public class DayThree {
     public static String[] canSplitTheListIntoIndividualInstructions(String directions) {
         String[] split = directions.split(", ");
         return split;
+    }
+
+    public static String splitIndividualInstructionIntoDirection(String s) {
+        return s.substring(0, 1);
+    }
+
+    public static String splitIndividualInstructionIntoDistance(String s) {
+        return s.substring(1);
     }
 }
 //(?<=\D)(?=\d)|(?<=\d)(?=\D)

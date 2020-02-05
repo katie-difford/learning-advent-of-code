@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -6,7 +7,6 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.stream.Stream;
 
-import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DayThreePartOneTest {
@@ -18,6 +18,7 @@ public class DayThreePartOneTest {
         );
     }
 
+    @Disabled
     @MethodSource("data")
     @ParameterizedTest
     void canGetTheClosestPointToZeroWhereTheTwoWiresCross(final Data data) {
@@ -30,7 +31,7 @@ public class DayThreePartOneTest {
         LinkedList list = new LinkedList();
         list.add(point);
 
-        assertThat(DayThree.addPointZeroAsFirstLocationInTheList()).isEqualTo(list);
+        assertThat(DayThree.addPointZeroAsFirstLocationInTheList(list)).isEqualTo(list);
     }
 
     @Test
@@ -39,6 +40,22 @@ public class DayThreePartOneTest {
         String[] splits = inputs.split(", ");
 
         assertThat(DayThree.canSplitTheListIntoIndividualInstructions(inputs)).isEqualTo(splits);
+    }
+
+    @Test
+    void canGetDirectionFromIndividualInstruction() {
+        String input = "R75";
+        String direction = input.substring(0, 1);
+
+        assertThat(DayThree.splitIndividualInstructionIntoDirection(input)).isEqualTo(direction);
+    }
+
+    @Test
+    void canGetDistanceFromIndividualInstruction() {
+        String input = "R75";
+        String distance = input.substring(1);
+
+        assertThat(DayThree.splitIndividualInstructionIntoDistance(input)).isEqualTo(distance);
     }
 
     private static class Data {
