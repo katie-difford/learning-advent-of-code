@@ -107,6 +107,18 @@ public class DayThree {
         }
     }
 
+    public static Point workOutNewCoordinatesOfTheWireWhenGoingLeft(LinkedList<Point> firstWire, String direction, String distance) {
+        if (direction.equals("L")) {
+            int currentX = (int)firstWire.get(0).getX();
+            int newX = currentX - Integer.parseInt(distance);
+            int newY = (int)firstWire.get(0).getY();
+            Point newPoint = new Point(newX, newY);
+            return newPoint;
+        } else {
+            return firstWire.get(0);
+        }
+    }
+
     public static void addsNewPointToList(LinkedList<Point> firstWire, Point newPoint) {
         firstWire.add(newPoint);
     }
