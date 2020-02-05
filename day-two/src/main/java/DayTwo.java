@@ -14,7 +14,7 @@ public class DayTwo {
 
     private static boolean instructionsToDecode(final int[] instructions, final int offset) {
 
-        //gets operational code foe next group of four
+        //gets operational code for next group of four
         final int opcode = instructions[offset];
         int total;
 
