@@ -21,7 +21,6 @@ public class DayThreePartOneTest {
         );
     }
 
-    @Disabled
     @MethodSource("data")
     @ParameterizedTest
     void canGetTheClosestPointToZeroWhereTheTwoWiresCross(final Data data) {

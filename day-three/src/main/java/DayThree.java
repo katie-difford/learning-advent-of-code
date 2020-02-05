@@ -1,8 +1,6 @@
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class DayThree {
 
@@ -22,6 +20,19 @@ public class DayThree {
         addPointZeroAsFirstLocationInTheList(secondWire);
         String[] splitSecondWire = canSplitTheListIntoIndividualInstructions(secondWireDirections);
         LinkedList<Point> secondWirePoints = createTheWire(secondWire, splitSecondWire);
+
+        LinkedList<Point> crossingPoints = new LinkedList<>();
+
+        //Replace with stream to iterate between two lists and compare the values, if they are the same then add them to the list, if they are not the same, then ignore.
+//        for (int i = 0; i < firstWirePoints.size(); i++) {
+//            for (int j = 0; j < secondWirePoints.size(); j++) {
+//                if (firstWirePoints.get(i).equals(secondWirePoints.get(j))) {
+//                    crossingPoints.add(secondWirePoints.get(j));
+//                }
+//            }
+//        }
+
+        System.out.println("Crossing Points: " + Arrays.toString(crossingPoints.toArray()));
 
         return 0;
     }
@@ -55,15 +66,6 @@ public class DayThree {
         }
 
         return wire;
-    }
-
-    private static void printOutNewDirectionsMap(HashMap<String, String> newDirections) {
-        Iterator map = newDirections.entrySet().iterator();
-        while (map.hasNext()) {
-            Map.Entry pair = (Map.Entry) map.next();
-            System.out.println("Key: " + pair.getKey() + " Value: " + pair.getValue());
-            map.remove();
-        }
     }
 
     public static LinkedList<Point> addPointZeroAsFirstLocationInTheList(LinkedList<Point> firstWire) {
@@ -120,4 +122,3 @@ public class DayThree {
         firstWire.add(newPoint);
     }
 }
-//(?<=\D)(?=\d)|(?<=\d)(?=\D)
