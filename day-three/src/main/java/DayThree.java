@@ -10,7 +10,7 @@ import static java.lang.String.valueOf;
 public class DayThree {
 
     public static void main(String[] args) {
-        distanceCalculation("R75, D30" );
+        distanceCalculation("R75, D30");
 //                "R83, U83, L12, D49, R71, U7, L72, U62, R66, U55, R34, D71, R55, D58, R83");
     }
 
@@ -23,8 +23,11 @@ public class DayThree {
 //
 //
         for (String s : split) {
-            splitIndividualInstructionIntoDirection(s);
-            splitIndividualInstructionIntoDistance(s);
+            String direction = splitIndividualInstructionIntoDirection(s);
+            String distance = splitIndividualInstructionIntoDistance(s);
+
+            Point pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingRight(firstWire, direction, distance);
+            addsNewPointToList(firstWire, pointToAdd);
 
 //
 //            int pointToGet = 0;
@@ -90,6 +93,22 @@ public class DayThree {
 
     public static String splitIndividualInstructionIntoDistance(String s) {
         return s.substring(1);
+    }
+
+    public static Point workOutNewCoordinatesOfTheWireWhenGoingRight(LinkedList<Point> firstWire, String direction, String distance) {
+        if (direction.equals("R")) {
+            int currentX = (int)firstWire.get(0).getX();
+            int newX = currentX + Integer.parseInt(distance);
+            int newY = (int)firstWire.get(0).getY();
+            Point newPoint = new Point(newX, newY);
+            return newPoint;
+        } else {
+            return firstWire.get(0);
+        }
+    }
+
+    public static void addsNewPointToList(LinkedList<Point> firstWire, Point newPoint) {
+        firstWire.add(newPoint);
     }
 }
 //(?<=\D)(?=\d)|(?<=\d)(?=\D)

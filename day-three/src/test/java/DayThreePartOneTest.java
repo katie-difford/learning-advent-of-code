@@ -27,7 +27,7 @@ public class DayThreePartOneTest {
 
     @Test
     void canAddPointZeroAsTheFirstLocationInTheList() {
-        Point point = new Point(0,0);
+        Point point = new Point(0, 0);
         LinkedList list = new LinkedList();
         list.add(point);
 
@@ -56,6 +56,33 @@ public class DayThreePartOneTest {
         String distance = input.substring(1);
 
         assertThat(DayThree.splitIndividualInstructionIntoDistance(input)).isEqualTo(distance);
+    }
+
+    @Test
+    void canWorkOutTheNewCoordinatesOfTheWireWhenGoingRight() {
+        Point point = new Point(0, 10);
+        LinkedList list = new LinkedList();
+        list.add(point);
+
+        String direction = "R";
+        String distance = "75";
+
+        Point newPoint = new Point(75, 10);
+
+        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingRight(list, direction, distance)).isEqualTo(newPoint);
+    }
+
+    @Test
+    void canAddNewPointToAList() {
+        LinkedList list = new LinkedList();
+        Point point = new Point(0, 10);
+        list.add(point);
+        Point newPoint = new Point(75, 10);
+        list.add(newPoint);
+
+        DayThree.addsNewPointToList(list, newPoint);
+
+        assertThat(list).contains(newPoint);
     }
 
     private static class Data {
