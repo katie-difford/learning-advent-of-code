@@ -27,12 +27,19 @@ public class DayThree {
             String distance = splitIndividualInstructionIntoDistance(s);
 
             Point pointToAdd;
-            if (direction.equals("R")) {
-                pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingRight(firstWire, distance);
-                addsNewPointToList(firstWire, pointToAdd);
-            } else if (direction.equals("R")) {
-                pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingLeft(firstWire, distance);
-                addsNewPointToList(firstWire, pointToAdd);
+            switch (direction) {
+                case "R":
+                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingRight(firstWire, distance);
+                    addsNewPointToList(firstWire, pointToAdd);
+                    break;
+                case "L":
+                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingLeft(firstWire, distance);
+                    addsNewPointToList(firstWire, pointToAdd);
+                    break;
+                case "U":
+                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingUp(firstWire, distance);
+                    addsNewPointToList(firstWire, pointToAdd);
+                    break;
             }
 
 //
@@ -119,6 +126,22 @@ public class DayThree {
 
     public static void addsNewPointToList(LinkedList<Point> firstWire, Point newPoint) {
         firstWire.add(newPoint);
+    }
+
+    public static Point workOutNewCoordinatesOfTheWireWhenGoingUp(LinkedList<Point> firstWire, String distance) {
+        int newX = (int) firstWire.get(0).getX();
+        int currentY = (int) firstWire.get(0).getY();
+        int newY = currentY + Integer.parseInt(distance);
+        Point newPoint = new Point(newX, newY);
+        return newPoint;
+    }
+
+    public static Point workOutNewCoordinatesOfTheWireWhenGoingDown(LinkedList<Point> firstWire, String distance) {
+        int newX = (int) firstWire.get(0).getX();
+        int currentY = (int) firstWire.get(0).getY();
+        int newY = currentY - Integer.parseInt(distance);
+        Point newPoint = new Point(newX, newY);
+        return newPoint;
     }
 }
 //(?<=\D)(?=\d)|(?<=\d)(?=\D)

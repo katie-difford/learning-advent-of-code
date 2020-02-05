@@ -85,6 +85,32 @@ public class DayThreePartOneTest {
     }
 
     @Test
+    void canWorkOutTheNewCoordinatesOfTheWireWhenGoingUp() {
+        Point point = new Point(75, 10);
+        LinkedList list = new LinkedList();
+        list.add(point);
+
+        String distance = "50";
+
+        Point newPoint = new Point(75, 60);
+
+        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingUp(list, distance)).isEqualTo(newPoint);
+    }
+
+    @Test
+    void canWorkOutTheNewCoordinatesOfTheWireWhenGoingDown() {
+        Point point = new Point(75, 60);
+        LinkedList list = new LinkedList();
+        list.add(point);
+
+        String distance = "50";
+
+        Point newPoint = new Point(75, 10);
+
+        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingDown(list, distance)).isEqualTo(newPoint);
+    }
+
+    @Test
     void canAddNewPointToAList() {
         LinkedList list = new LinkedList();
         Point point = new Point(0, 10);
