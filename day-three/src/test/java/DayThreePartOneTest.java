@@ -61,53 +61,65 @@ public class DayThreePartOneTest {
     @Test
     void canWorkOutTheNewCoordinatesOfTheWireWhenGoingRight() {
         Point point = new Point(0, 10);
+        Point anotherPoint = new Point(100, 100);
+
         LinkedList list = new LinkedList();
         list.add(point);
+        list.add(anotherPoint);
 
         String distance = "75";
 
-        Point newPoint = new Point(75, 10);
+        Point newPoint = new Point(175, 100);
 
-        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingRight(list, distance)).isEqualTo(newPoint);
+        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingRight(1, list, distance)).isEqualTo(newPoint);
     }
 
     @Test
     void canWorkOutTheNewCoordinatesOfTheWireWhenGoingLeft() {
         Point point = new Point(75, 10);
+        Point anotherPoint = new Point(100, 100);
+
         LinkedList list = new LinkedList();
         list.add(point);
+        list.add(anotherPoint);
 
         String distance = "10";
 
-        Point newPoint = new Point(65, 10);
+        Point newPoint = new Point(90, 100);
 
-        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingLeft(list, distance)).isEqualTo(newPoint);
+        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingLeft(1, list, distance)).isEqualTo(newPoint);
     }
 
     @Test
     void canWorkOutTheNewCoordinatesOfTheWireWhenGoingUp() {
         Point point = new Point(75, 10);
+        Point anotherPoint = new Point(100, 100);
+
         LinkedList list = new LinkedList();
         list.add(point);
+        list.add(anotherPoint);
 
         String distance = "50";
 
-        Point newPoint = new Point(75, 60);
+        Point newPoint = new Point(100, 150);
 
-        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingUp(list, distance)).isEqualTo(newPoint);
+        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingUp(1, list, distance)).isEqualTo(newPoint);
     }
 
     @Test
     void canWorkOutTheNewCoordinatesOfTheWireWhenGoingDown() {
         Point point = new Point(75, 60);
+        Point anotherPoint = new Point(100, 100);
         LinkedList list = new LinkedList();
+
         list.add(point);
+        list.add(anotherPoint);
 
         String distance = "50";
 
-        Point newPoint = new Point(75, 10);
+        Point newPoint = new Point(100, 50);
 
-        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingDown(list, distance)).isEqualTo(newPoint);
+        assertThat(DayThree.workOutNewCoordinatesOfTheWireWhenGoingDown(1, list, distance)).isEqualTo(newPoint);
     }
 
     @Test
