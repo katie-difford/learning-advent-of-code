@@ -14,7 +14,10 @@ public class DayThreePartOneTest {
     private static Stream<Data> data() {
 
         return Stream.of(
-                new Data("R75, D30, R83, U83, L12, D49, R71, U7, L72, U62, R66, U55, R34, D71, R55, D58, R83", 159)
+                new Data(
+                        "R75, D30, R83, U83, L12, D49, R71, U7, L72",
+                        "U62, R66, U55, R34, D71, R55, D58, R83",
+                        159)
         );
     }
 
@@ -22,7 +25,7 @@ public class DayThreePartOneTest {
     @MethodSource("data")
     @ParameterizedTest
     void canGetTheClosestPointToZeroWhereTheTwoWiresCross(final Data data) {
-        assertThat(DayThree.distanceCalculation(data.directions)).isEqualTo(data.distance);
+        assertThat(DayThree.distanceCalculationForWire(data.firstWireDirections, data.secondWireDirections)).isEqualTo(data.distance);
     }
 
     @Test
@@ -137,12 +140,14 @@ public class DayThreePartOneTest {
 
     private static class Data {
 
-        private String directions;
+        private String firstWireDirections;
+        private String secondWireDirections;
         private int distance;
 
-        public Data(final String directions, final int distance) {
+        public Data(final String firstWireDirections, final String secondWireDirections, final int distance) {
 
-            this.directions = directions;
+            this.firstWireDirections = firstWireDirections;
+            this.secondWireDirections = secondWireDirections;
             this.distance = distance;
         }
     }

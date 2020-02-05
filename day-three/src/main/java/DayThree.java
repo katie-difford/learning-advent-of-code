@@ -1,25 +1,34 @@
 import java.awt.*;
-import java.util.*;
-
-import static java.lang.Integer.parseInt;
-import static java.lang.String.valueOf;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class DayThree {
 
     public static void main(String[] args) {
-        distanceCalculation("R75, D30");
-//                "R83, U83, L12, D49, R71, U7, L72, U62, R66, U55, R34, D71, R55, D58, R83");
+        int distance = distanceCalculationForWire("R75, D30, R83, U83, L12, D49, R71, U7, L72", "U62, R66, U55, R34, D71, R55, D58, R83");
+        System.out.println("Distance: " + distance);
     }
 
-    public static boolean distanceCalculation(String directions) {
+    public static int distanceCalculationForWire(String firstWireDirections, String secondWireDirections) {
         LinkedList<Point> firstWire = new LinkedList<>();
-
+        LinkedList<Point> secondWire = new LinkedList<>();
 
         addPointZeroAsFirstLocationInTheList(firstWire);
-        String[] split = canSplitTheListIntoIndividualInstructions(directions);
+        String[] splitFirstWire = canSplitTheListIntoIndividualInstructions(firstWireDirections);
+        LinkedList<Point> firstWirePoints = createTheWire(firstWire, splitFirstWire);
 
+        addPointZeroAsFirstLocationInTheList(secondWire);
+        String[] splitSecondWire = canSplitTheListIntoIndividualInstructions(secondWireDirections);
+        LinkedList<Point> secondWirePoints = createTheWire(secondWire, splitSecondWire);
+
+        return 0;
+    }
+
+    private static LinkedList<Point> createTheWire(LinkedList<Point> wire, String[] splitFirstWire) {
         int elementToGet = 0;
-        for (String s : split) {
+        for (String s : splitFirstWire) {
             String direction = splitIndividualInstructionIntoDirection(s);
             String distance = splitIndividualInstructionIntoDistance(s);
 
@@ -27,32 +36,25 @@ public class DayThree {
 
             switch (direction) {
                 case "R":
-                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingRight(elementToGet, firstWire, distance);
-                    addsNewPointToList(firstWire, pointToAdd);
+                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingRight(elementToGet, wire, distance);
+                    addsNewPointToList(wire, pointToAdd);
                     break;
                 case "L":
-                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingLeft(elementToGet, firstWire, distance);
-                    addsNewPointToList(firstWire, pointToAdd);
+                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingLeft(elementToGet, wire, distance);
+                    addsNewPointToList(wire, pointToAdd);
                     break;
                 case "U":
-                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingUp(elementToGet, firstWire, distance);
-                    addsNewPointToList(firstWire, pointToAdd);
+                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingUp(elementToGet, wire, distance);
+                    addsNewPointToList(wire, pointToAdd);
                     break;
                 case "D":
-                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingDown(elementToGet, firstWire, distance);
-                    addsNewPointToList(firstWire,pointToAdd);
+                    pointToAdd = workOutNewCoordinatesOfTheWireWhenGoingDown(elementToGet, wire, distance);
+                    addsNewPointToList(wire, pointToAdd);
             }
             elementToGet++;
-            System.out.println("Element to Get: " + elementToGet);
-
-            System.out.println("The First Wire List: " + Arrays.toString(firstWire.toArray()));
-
         }
-//
-//        System.out.println("First Wire: " + firstWire);
 
-        return true;
-
+        return wire;
     }
 
     private static void printOutNewDirectionsMap(HashMap<String, String> newDirections) {
