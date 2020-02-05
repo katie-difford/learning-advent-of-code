@@ -16,10 +16,9 @@ public class DayThree {
 
     public static boolean distanceCalculation(String directions) {
         addPointZeroAsFirstLocationInTheList();
+        canSplitTheListIntoIndividualInstructions(directions);
+
 //
-//        System.out.println("First Wire: " + firstWire);
-//
-//        String[] split = directions.split(", ");
 //
 //        for (String s : split) {
 //            String direction = s.substring(0, 1);
@@ -74,7 +73,13 @@ public class DayThree {
         Point firstLocation = new Point(0, 0);
         LinkedList<Point> firstWire = new LinkedList<>();
         firstWire.add(firstLocation);
+        System.out.println("First Wire: " + firstWire);
         return firstWire;
+    }
+
+    public static String[] canSplitTheListIntoIndividualInstructions(String directions) {
+        String[] split = directions.split(", ");
+        return split;
     }
 }
 //(?<=\D)(?=\d)|(?<=\d)(?=\D)

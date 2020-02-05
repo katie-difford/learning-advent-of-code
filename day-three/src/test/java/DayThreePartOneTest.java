@@ -33,6 +33,14 @@ public class DayThreePartOneTest {
         assertThat(DayThree.addPointZeroAsFirstLocationInTheList()).isEqualTo(list);
     }
 
+    @Test
+    void splitTheValuesInTheListByIndividualInstructions() {
+        String inputs = "R75, D30, R83, U83, L12";
+        String[] splits = inputs.split(", ");
+
+        assertThat(DayThree.canSplitTheListIntoIndividualInstructions(inputs)).isEqualTo(splits);
+    }
+
     private static class Data {
 
         private String directions;
