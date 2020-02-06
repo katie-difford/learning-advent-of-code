@@ -5,11 +5,13 @@ import java.util.stream.Stream;
 public class DayThree {
 
     public static void main(String[] args) {
-        int distance = distanceCalculationForWire("R75, D30, R83, U83, L12, D49, R71, U7, L72", "U62, R66, U55, R34, D71, R55, D58, R83");
+        DayThree dayThree = new DayThree();
+
+        int distance = dayThree.distanceCalculationForWire("R75, D30, R83, U83, L12, D49, R71, U7, L72", "U62, R66, U55, R34, D71, R55, D58, R83");
         System.out.println("Distance: " + distance);
     }
 
-    public static int distanceCalculationForWire(String firstWireDirections, String secondWireDirections) {
+    public int distanceCalculationForWire(String firstWireDirections, String secondWireDirections) {
         LinkedList<Point> firstWire = new LinkedList<>();
         LinkedList<Point> secondWire = new LinkedList<>();
 
@@ -37,7 +39,7 @@ public class DayThree {
         return 0;
     }
 
-    private static LinkedList<Point> createTheWire(LinkedList<Point> wire, String[] splitFirstWire) {
+    private LinkedList<Point> createTheWire(LinkedList<Point> wire, String[] splitFirstWire) {
         int elementToGet = 0;
         for (String s : splitFirstWire) {
             String direction = splitIndividualInstructionIntoDirection(s);
@@ -68,7 +70,7 @@ public class DayThree {
         return wire;
     }
 
-    public static LinkedList<Point> addPointZeroAsFirstLocationInTheList(LinkedList<Point> firstWire) {
+    public LinkedList<Point> addPointZeroAsFirstLocationInTheList(LinkedList<Point> firstWire) {
         Point firstLocation = new Point(0, 0);
         firstWire.add(firstLocation);
         System.out.println("First Wire: " + firstWire);
@@ -80,15 +82,15 @@ public class DayThree {
         return split;
     }
 
-    public static String splitIndividualInstructionIntoDirection(String s) {
+    public String splitIndividualInstructionIntoDirection(String s) {
         return s.substring(0, 1);
     }
 
-    public static String splitIndividualInstructionIntoDistance(String s) {
+    public String splitIndividualInstructionIntoDistance(String s) {
         return s.substring(1);
     }
 
-    public static Point workOutNewCoordinatesOfTheWireWhenGoingRight(int elementToGet, LinkedList<Point> firstWire, String distance) {
+    public Point workOutNewCoordinatesOfTheWireWhenGoingRight(int elementToGet, LinkedList<Point> firstWire, String distance) {
         int currentX = (int) firstWire.get(elementToGet).getX();
         int newX = currentX + Integer.parseInt(distance);
         int newY = (int) firstWire.get(elementToGet).getY();
@@ -96,7 +98,7 @@ public class DayThree {
         return newPoint;
     }
 
-    public static Point workOutNewCoordinatesOfTheWireWhenGoingLeft(int elementToGet, LinkedList<Point> firstWire, String distance) {
+    public Point workOutNewCoordinatesOfTheWireWhenGoingLeft(int elementToGet, LinkedList<Point> firstWire, String distance) {
         int currentX = (int) firstWire.get(elementToGet).getX();
         int newX = currentX - Integer.parseInt(distance);
         int newY = (int) firstWire.get(elementToGet).getY();
@@ -104,21 +106,21 @@ public class DayThree {
         return newPoint;
     }
 
-    public static Point workOutNewCoordinatesOfTheWireWhenGoingUp(int elementToGet, LinkedList<Point> firstWire, String distance) {
+    public Point workOutNewCoordinatesOfTheWireWhenGoingUp(int elementToGet, LinkedList<Point> firstWire, String distance) {
         int newX = (int) firstWire.get(elementToGet).getX();
         int currentY = (int) firstWire.get(elementToGet).getY();
         int newY = currentY + Integer.parseInt(distance);
         return new Point(newX, newY);
     }
 
-    public static Point workOutNewCoordinatesOfTheWireWhenGoingDown(int elementToGet, LinkedList<Point> firstWire, String distance) {
+    public Point workOutNewCoordinatesOfTheWireWhenGoingDown(int elementToGet, LinkedList<Point> firstWire, String distance) {
         int newX = (int) firstWire.get(elementToGet).getX();
         int currentY = (int) firstWire.get(elementToGet).getY();
         int newY = currentY - Integer.parseInt(distance);
         return new Point(newX, newY);
     }
 
-    public static void addsNewPointToList(LinkedList<Point> firstWire, Point newPoint) {
+    public void addsNewPointToList(LinkedList<Point> firstWire, Point newPoint) {
         firstWire.add(newPoint);
     }
 }
