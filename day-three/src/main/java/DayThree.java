@@ -18,10 +18,13 @@ public class DayThree {
         addPointZeroAsFirstLocationInTheList(firstWire);
         String[] splitFirstWire = canSplitTheListIntoIndividualInstructions(firstWireDirections);
         LinkedList<Point> firstWirePoints = createTheWire(firstWire, splitFirstWire);
+        System.out.println("First Wire Points: " + firstWirePoints);
 
         addPointZeroAsFirstLocationInTheList(secondWire);
         String[] splitSecondWire = canSplitTheListIntoIndividualInstructions(secondWireDirections);
         LinkedList<Point> secondWirePoints = createTheWire(secondWire, splitSecondWire);
+        System.out.println("Second Wire Points: " + secondWirePoints);
+
 
         LinkedList<Point> crossingPoints = new LinkedList<>();
 
@@ -70,11 +73,11 @@ public class DayThree {
         return wire;
     }
 
-    public LinkedList<Point> addPointZeroAsFirstLocationInTheList(LinkedList<Point> firstWire) {
+    public LinkedList<Point> addPointZeroAsFirstLocationInTheList(LinkedList<Point> wire) {
         Point firstLocation = new Point(0, 0);
-        firstWire.add(firstLocation);
-        System.out.println("First Wire: " + firstWire);
-        return firstWire;
+        wire.add(firstLocation);
+        System.out.println("First Wire Point: " + wire.get(0));
+        return wire;
     }
 
     public static String[] canSplitTheListIntoIndividualInstructions(String directions) {
