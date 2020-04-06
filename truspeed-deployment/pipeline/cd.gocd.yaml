@@ -1,0 +1,32 @@
+format_version: 3
+
+environments:
+  ukiss-v2:
+    pipelines:
+      - truspeed-zombie-deployment
+  stubs:
+    pipelines:
+      - truspeed-zombie-deploy-stubs
+
+pipelines:
+  truspeed-zombie-deployment:
+    group: nim
+    label_template: ${COUNT}
+    materials:
+      truspeed-zombie-deployment:
+        type: configrepo
+        destination: application
+    template: pipeline-v2-deployment-ci
+
+  truspeed-zombie-deploy-stubs:
+    group: nim
+    label_template: ${dependency}
+    environment_variables:
+      TARGET_CLUSTER: stubs
+      DEPLOYMENT_CONFIG_NAME: truspeed-zombie-deployment
+      NAMESPACE: "stubs"
+    materials:
+      dependency:
+        pipeline: truspeed-zombie-deployment
+        stage: completed
+    template: pipeline-stubs-deploy
