@@ -1,0 +1,44 @@
+{
+  "name": "truspeed-zombie",
+  "namespace": "$(NAMESPACE)",
+  "team": "nim",
+  "deployment": {
+    "replicas": "$(TRUSPEED_ZOMBIE_REPLICAS)",
+    "containers": [
+      {
+        "name": "truspeed-zombie",
+        "memoryRequest": "2.5Gi",
+        "memoryLimit": "2.5Gi",
+        "image": "$(IMAGE_REPOSITORY)/ukiss/truspeed-zombie:$(TRUSPEED_ZOMBIE_VERSION)",
+        "services": [
+          {
+            "name": "truspeed-zombie",
+            "containerPort": 80,
+            "metrics": true,
+            "readinessProbe": {
+              "enabled": true
+            },
+            "livenessProbe": {
+              "enabled": true
+            },
+            "ingress": [
+              {
+                "urls": "$(TRUSPEED_ZOMBIE_INGRESS_URL)"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "qualityGate": {
+    "serviceName": "truspeed-zombie",
+    "version": "$(TRUSPEED_ZOMBIE_VERSION)",
+    "applicableInEnvironment": ["stubs"],
+    "verifyReleaseVersion": true,
+    "advancedOptions": {
+      "replicas": "$(TRUSPEED_ZOMBIE_REPLICAS)",
+      "ingress-dns-name": "$(TRUSPEED_ZOMBIE_INGRESS_URL)"
+    }
+  }
+}
